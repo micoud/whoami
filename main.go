@@ -30,9 +30,9 @@ func main() {
 	handler2 := &portHandler{port: port2}
 
 	whoami1 := http.NewServeMux()
-	whoami1.HandleFunc("/1", handler1.whoamiHandler)
+	whoami1.HandleFunc("/", handler1.whoamiHandler)
 	whoami2 := http.NewServeMux()
-	whoami2.HandleFunc("/2", handler2.whoamiHandler)
+	whoami2.HandleFunc("/", handler2.whoamiHandler)
 
 	go func() {
 		log.Fatal(http.ListenAndServe(":"+port1, whoami1))

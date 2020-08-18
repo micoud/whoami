@@ -8,8 +8,8 @@ Derived from https://github.com/containous/whoami.
 
 Two http endpoints are opened:
 
-* `localhost:<port1>/1`
-* `localhost:<port2>/2`
+* `localhost:<port1>`
+* `localhost:<port2>`
 
 ## Build, run
 
