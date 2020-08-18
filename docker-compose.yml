@@ -1,0 +1,25 @@
+version: "3.8"
+
+# we assume that a traefik-container is running with an overlay network 'traefik-net'
+networks:
+  traefik-net:
+    external: true
+
+services:
+   whoami:
+     image: registry/whoami:latest
+     deploy:
+       labels:
+         - "traefik.enable=true"
+         - "traefik.http.routers.whoami1.rule=(Host(`whoami.example.com`) || Host(`localhost`)) && Path(`/1`)"
+         - "traefik.http.routers.whoami1.entrypoints=websecure"
+         - "traefik.http.routers.whoami1.tls=true"
+         - "traefik.http.routers.whoami1.service=whoami1"
+         - "traefik.http.routers.whoami2.rule=(Host(`whoami.example.com`) || Host(`localhost`)) && Path(`/2`)"
+         - "traefik.http.routers.whoami2.entrypoints=websecure"
+         - "traefik.http.routers.whoami2.tls=true"
+         - "traefik.http.routers.whoami2.service=whoami2"
+         - "traefik.http.services.whoami2.loadbalancer.server.port=8081"
+         - "traefik.http.services.whoami1.loadbalancer.server.port=8080"
+     networks:
+       - traefik-net

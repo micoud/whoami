@@ -24,3 +24,9 @@ Run
 ```bash
 ./whoami [-port1 <port1>] [-port2 <port2>]
 ```
+
+## Docker
+
+A docker image can be built with `docker build [-t <registry>/whoami:latest] .`
+
+Assuming that you run traefik as a load balancer for docker (e.g. a docker swarm) the container can be deployed via the docker compose file `docker-compose.yml`.
